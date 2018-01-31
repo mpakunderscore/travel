@@ -52,6 +52,28 @@ function initMap() {
 
     map.mapTypes.set('mapStyle', new google.maps.StyledMapType(mapStyle, { name: 'Map style' }));
 
+    console.log(codes.length);
+
+    let whereString = "";
+
+    codes.forEach(function(item) {
+        whereString += "'" + item + "', ";
+    });
+
+    whereString = whereString.slice(0, -2);
+
+    // console.log(whereString);
+
+    let world_geometry = new google.maps.FusionTablesLayer({
+        query: {
+            select: 'geometry',
+            from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+            where: "ISO_2DIGIT IN (" + whereString + ")"
+        },
+        map: map,
+        suppressInfoWindows: true
+    });
+
     google.maps.event.addListener(map, "center_changed", function() {
 
         //Set local storage variables.
@@ -91,6 +113,16 @@ function openConstructor(region) {
 
     document.getElementById('constructor').style.display = 'block';
 }
+
+
+
+
+
+//
+
+
+
+
 
 function saveMarker() {
 
