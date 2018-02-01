@@ -89,7 +89,7 @@ function selectCountries(selected) {
 
     selected.forEach(function (item) {
 
-        if (item['weather'] || !item['weather'])
+        if ((item['weather'] && parseInt(item['weather']['temperature']) > 0 && parseInt(item['weather']['temperature']) < 25) || !item['weather'])
         whereString += "'" + item['code'] + "', ";
     });
 

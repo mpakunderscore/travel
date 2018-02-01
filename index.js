@@ -24,7 +24,7 @@ app.get('/countries', function (request, response) {
 });
 
 app.get('/weather', function (request, response) {
-    response.json(select.weather(store));
+    response.json(select.weather());
 });
 
 

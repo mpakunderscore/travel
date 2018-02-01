@@ -13,13 +13,17 @@ exports.countries = function () {
     return selected;
 };
 
-exports.weather = function (store) {
+exports.weather = function () {
+
+    // console.log("Weather start.");
 
     for (let i = 0; i < selected.length; i++) {
 
-        if (selected["city"])
-            weather.check(selected[i]);
+        // console.log(selected["city"])
+
+        if (selected[i]["city"])
+            weather.check(i, selected[i]);
     }
 
-    console.log("Weather done.")
+    // console.log("Weather done.")
 };
