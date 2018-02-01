@@ -14,12 +14,12 @@
 
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <link rel="stylesheet" type="text/css" href="css/media.css">
 
         <script src="js/index.js"></script>
-        <script src="js/countries.js"></script>
-        <script src="js/visa.js"></script>
 
         <script src="js/utils/style.js"></script>
         <script src="js/utils/map.js"></script>
@@ -37,11 +37,18 @@
         <div id="map"></div>
 
         <div id="menu">
-            <div>Passport: Russia</div>
-            <div>Visa: no </div>
-            <div>Temperature: 10-25</div>
-            <div>Ticket price less (USD): 300</div>
 
+
+            <div>Passport: Russia</div>
+            <div>From: Moscow</div>
+            <div>Ticket price: <span contenteditable="true">300</span></div>
+            <div>Temperature: <span contenteditable="true">>10 & <30</span></div>
+            <div>Population: <span contenteditable="true">>1000000</span></div>
+            <div>Visa: no</div>
+            <a href="/countries" target="_blank">List</a>
+        </div>
+
+        <div id="other">
         </div>
 
         <!--<script src="js/routes.js"></script>-->

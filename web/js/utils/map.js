@@ -1,12 +1,8 @@
 let map;
-let markers = [];
-let buffer;
 
-let center;
+let world_geometry;
 
 let region;
-
-let questionId = 0;
 
 function initMap() {
 
@@ -52,28 +48,6 @@ function initMap() {
 
     map.mapTypes.set('mapStyle', new google.maps.StyledMapType(mapStyle, { name: 'Map style' }));
 
-    console.log(codes.length);
-
-    let whereString = "";
-
-    codes.forEach(function(item) {
-        whereString += "'" + item + "', ";
-    });
-
-    whereString = whereString.slice(0, -2);
-
-    // console.log(whereString);
-
-    let world_geometry = new google.maps.FusionTablesLayer({
-        query: {
-            select: 'geometry',
-            from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
-            where: "ISO_2DIGIT IN (" + whereString + ")"
-        },
-        map: map,
-        suppressInfoWindows: true
-    });
-
     google.maps.event.addListener(map, "center_changed", function() {
 
         //Set local storage variables.
@@ -103,7 +77,40 @@ function initMap() {
 
         // populate yor box/field with lat, lng
         // alert("Lat=" + lat + "; Lng=" + lng);
-        openConstructor({lat: lat, lng: lng});
+        // openConstructor({lat: lat, lng: lng});
+    });
+}
+
+function selectCountries(selected) {
+
+    // console.log(selected.length);
+
+    let whereString = "";
+
+    selected.forEach(function (item) {
+
+        if (item['weather'] || !item['weather'])
+        whereString += "'" + item['code'] + "', ";
+    });
+
+    whereString = whereString.slice(0, -2);
+
+    // console.log(whereString);
+
+    world_geometry = new google.maps.FusionTablesLayer({
+
+        query: {
+            select: 'geometry',
+            from: '1N2LBk4JHwWpOY4d9fobIn27lfnZ5MDy-NoqqRpk',
+            where: "ISO_2DIGIT IN (" + whereString + ")"
+        },
+        map: map,
+        suppressInfoWindows: true
+    });
+
+    google.maps.event.addListener(world_geometry, "click", function(event) {
+
+        console.log(event);
     });
 }
 
